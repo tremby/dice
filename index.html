@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+
+<!--
+Little HTML5/coffeescript dice app
+By Bart Nagel <bart@tremby.net>
+Licence undecided: email me to enquire
+
+Dice rolling sound effect by Mike Koenig, "Attribution 3.0" licence, found at 
+and edited down from 
+http://soundbible.com/182-Shake-And-Roll-Dice.html
+-->
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="author" content="Bart Nagel &lt;bart@tremby.net&gt;">
+		<title>Dice</title>
+		<script type="text/javascript" charset="utf-8">
+		</script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="application/javascript"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+		<script src="modernizr.custom.js" type="application/javascript"></script>
+		<script src="spectrum.js" type="application/javascript"></script>
+		<script src="Colour.js" type="application/javascript"></script>
+		<link rel="stylesheet" href="spectrum.css" type="text/css" charset="utf-8">
+
+		<script type="application/javascript" src="dice.js"></script>
+		<link rel="stylesheet" href="style.css" type="text/css" charset="utf-8">
+	</head>
+	<body>
+		<section id="dice">
+			<button id="configuration-toggle">Toggle configuration</button>
+			<ul>
+				<li>
+					<div class="image">
+						<div class="aspect"></div>
+						<div class="content">
+							<div class="sides">d6</div>
+							<div class="value"><span class="default-size">click to roll</span></div>
+							<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 4 4">
+								<circle class="dot-1-1" cx="1" cy="1" r="0.45"/>
+								<circle class="dot-1-2" cx="1" cy="2" r="0.45"/>
+								<circle class="dot-1-3" cx="1" cy="3" r="0.45"/>
+								<circle class="dot-2-1" cx="2" cy="1" r="0.45"/>
+								<circle class="dot-2-2" cx="2" cy="2" r="0.45"/>
+								<circle class="dot-2-3" cx="2" cy="3" r="0.45"/>
+								<circle class="dot-3-1" cx="3" cy="1" r="0.45"/>
+								<circle class="dot-3-2" cx="3" cy="2" r="0.45"/>
+								<circle class="dot-3-3" cx="3" cy="3" r="0.45"/>
+							</svg>
+						</div>
+					</div>
+					<div class="label"></div>
+					<div class="hold">
+						<label>
+							<input class="hold" type="checkbox">
+							Hold
+						</label>
+					</div>
+					<ul class="configuration">
+						<li>
+							<label>
+								Number of sides
+								<input class="sides" type="number" min="2" step="1" value="6">
+							</label>
+						</li>
+						<li>
+							<label>
+								Base-zero
+								<input class="base-zero" type="checkbox">
+							</label>
+						</li>
+						<li>
+							<label>
+								Colour
+								<input class="colour" type="color" value="#cc0000">
+							</label>
+						</li>
+						<li>
+							<label>
+								Die label
+								<input class="label" type="text">
+							</label>
+						</li>
+						<li>
+							<button class="remove">Remove</button>
+						</li>
+						<li>
+							<button class="duplicate">Duplicate</button>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div id="total"></div>
+		</section>
+		<section id="history">
+			<ol>
+			</ol>
+		</section>
+		<div id="sound"></div>
+	</body>
+</html>
+
