@@ -1,6 +1,10 @@
 module.exports = (grunt) ->
 	grunt.initConfig
 		stylus:
+			options:
+				import: [
+					'nib'
+				]
 			app:
 				files:
 					'build/style.css': 'style.styl'
