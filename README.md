@@ -9,11 +9,26 @@ Live version at http://tremby.net/dice/
 Build
 -----
 
-Requires Coffeescript and Stylus.
+Assuming `npm` is installed, install the Grunt tool and bower globally:
 
-	npm install -g stylus coffee-script
-	stylus style.styl
-	coffee -cm dice.coffee
+	sudo npm install -g grunt-cli bower
+
+Install dependencies:
+
+	npm install
+	bower install
+
+Build:
+
+	grunt
+
+Watch stylus and coffeescript sources and rebuild when they change:
+
+	grunt watch
+
+The watch command does not roll the libraries together. To do just that:
+
+	grunt uglify:libs
 
 Todo
 ----
