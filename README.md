@@ -22,3 +22,8 @@ Todo
 - Make sound optional
 - Option to shake device to roll
 - Fix roll history dialog which is dodgy on some browsers
+
+Licence
+-------
+
+MIT
