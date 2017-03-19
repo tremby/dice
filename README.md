@@ -1,11 +1,6 @@
 HTML5 dice
 ==========
 
-Demo
-----
-
-Live version at http://tremby.net/dice/
-
 Build
 -----
 
