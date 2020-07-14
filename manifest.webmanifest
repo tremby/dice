@@ -2,8 +2,15 @@
 	"display": "fullscreen",
 	"icons": [
 		{
-			"src": "dice.svg",
-			"sizes": "72x72"
+			"src": "dice.svg"
+		},
+		{
+			"src": "dice-192.png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "dice-180.png",
+			"sizes": "180x180"
 		}
 	],
 	"name": "Dice",
