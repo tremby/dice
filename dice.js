@@ -1,8 +1,6 @@
 const scene = document.querySelector('#scene');
-const numDiceInput = document.querySelector('input[name="numDice"]');
-const sound = document.querySelector('#sound');
-const rollHistoryList = document.querySelector('#history ol');
 
+const numDiceInput = document.querySelector('input[name="numDice"]');
 function updateNumDice() {
 	const newNumDice = parseInt(numDiceInput.value);
 	const oldNumDice = scene.children.length;
@@ -17,6 +15,7 @@ numDiceInput.addEventListener('change', updateNumDice);
 updateNumDice();
 
 let rollCount = 0;
+const sound = document.querySelector('#sound');
 function roll() {
 	scene.dataset.rollCountMod5 = ++rollCount % 5;
 	const rolls = [];
@@ -41,6 +40,7 @@ document.body.addEventListener('keydown', (event) => {
 	}
 });
 
+const rollHistoryList = document.querySelector('#history ol');
 function addToHistory(rolls) {
 	const li = document.createElement('li');
 	const strong = document.createElement('strong');
