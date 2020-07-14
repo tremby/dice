@@ -117,16 +117,27 @@ circle {
 
 #history {
 	position: absolute;
-	max-height: 100vh;
+	max-width: 100%;
 	bottom: 0;
+	right: 0;
 	overflow: auto;
-	z-index: -1;
+	white-space: nowrap;
+	padding-right: 0.5em;
+	box-sizing: border-box;
+}
+#history ol {
+	display: flex;
+	list-style-position: inside;
+	align-items: baseline;
+	padding: 0;
+	margin-left: auto;
 }
 #history strong {
 	font-size: 150%;
 }
 #history li {
 	opacity: 0.4;
+	margin-left: 2em;
 }
 #history li:last-child {
 	opacity: 1;
@@ -151,6 +162,6 @@ header li + li {
 footer {
 	position: absolute;
 	right: 0;
-	bottom: 0;
+	top: 0;
 	padding: 0.5em;
 }
