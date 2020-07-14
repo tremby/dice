@@ -127,7 +127,6 @@ circle {
 	bottom: 0;
 	overflow: auto;
 	white-space: nowrap;
-	box-sizing: border-box;
 }
 #history ol {
 	display: flex;
