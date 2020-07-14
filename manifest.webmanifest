@@ -1,0 +1,12 @@
+{
+	"display": "fullscreen",
+	"icons": [
+		{
+			"src": "dice.svg",
+			"sizes": "72x72"
+		}
+	],
+	"name": "Dice",
+	"short_name": "Dice",
+	"start_url": "/"
+}

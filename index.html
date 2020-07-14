@@ -1,100 +1,146 @@
 <!DOCTYPE HTML>
 
 <!--
-Little HTML5/coffeescript dice app
-By Bart Nagel <bart@tremby.net>
-MIT licence
-
-Dice rolling sound effect by Mike Koenig, "Attribution 3.0" licence, found at 
-and edited down from 
-http://soundbible.com/182-Shake-And-Roll-Dice.html
+Dice rolling sound effect by Mike Koenig, "Attribution 3.0" licence, found at
+and edited down from http://soundbible.com/182-Shake-And-Roll-Dice.html
 -->
 
-<html>
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width">
 		<meta name="author" content="Bart Nagel &lt;bart@tremby.net&gt;">
 		<title>Dice</title>
-		<script type="text/javascript" charset="utf-8">
-		</script>
-		<script src="build/libs.js" type="application/javascript"></script>
-		<script src="build/dice.js" type="application/javascript"></script>
-
-		<link rel="stylesheet" href="bower_components/spectrum/spectrum.css" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="build/style.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="dice.css">
+		<script src="dice.js" defer async></script>
+		<link rel="manifest" href="manifest.webmanifest">
 	</head>
 	<body>
-		<section id="dice">
-			<button id="configuration-toggle">Toggle configuration</button>
-			<ul>
-				<li>
-					<div class="image">
-						<div class="aspect"></div>
-						<div class="content">
-							<div class="sides">d6</div>
-							<div class="value"><span class="default-size">click to roll</span></div>
-							<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 4 4">
-								<circle class="dot-1-1" cx="1" cy="1" r="0.45"/>
-								<circle class="dot-1-2" cx="1" cy="2" r="0.45"/>
-								<circle class="dot-1-3" cx="1" cy="3" r="0.45"/>
-								<circle class="dot-2-1" cx="2" cy="1" r="0.45"/>
-								<circle class="dot-2-2" cx="2" cy="2" r="0.45"/>
-								<circle class="dot-2-3" cx="2" cy="3" r="0.45"/>
-								<circle class="dot-3-1" cx="3" cy="1" r="0.45"/>
-								<circle class="dot-3-2" cx="3" cy="2" r="0.45"/>
-								<circle class="dot-3-3" cx="3" cy="3" r="0.45"/>
-							</svg>
-						</div>
-					</div>
-					<div class="label"></div>
-					<div class="hold">
-						<label>
-							<input class="hold" type="checkbox">
-							Hold
-						</label>
-					</div>
-					<ul class="configuration">
+		<main>
+			<header>
+				<details>
+					<summary>Instructions</summary>
+					<p>Click/tap dice or press space to roll.</p>
+				</details>
+
+				<details>
+					<summary>Configuration</summary>
+					<ul>
 						<li>
 							<label>
-								Number of sides
-								<input class="sides" type="number" min="2" step="1" value="6">
+								Number of dice
+								<input type="range" name="numDice" min="1" max="6" value="2">
 							</label>
 						</li>
 						<li>
-							<label>
-								Base-zero
-								<input class="base-zero" type="checkbox">
-							</label>
+							<fieldset>
+								<legend>Number style</legend>
+								<ul>
+									<li>
+										<label>
+											<input type="radio" name="numberStyle" value="dots" checked>
+											Dots
+										</label>
+									</li>
+									<li>
+										<label>
+											<input type="radio" name="numberStyle" value="numbers" checked>
+											Numbers
+										</label>
+									</li>
+								</ul>
+							</fieldset>
 						</li>
 						<li>
 							<label>
-								Colour
-								<input class="colour" type="color" value="#cc0000">
+								Sound
+								<input type="checkbox" name="sound" checked>
 							</label>
 						</li>
 						<li>
-							<label>
-								Die label
-								<input class="label" type="text">
-							</label>
-						</li>
-						<li>
-							<button class="remove">Remove</button>
-						</li>
-						<li>
-							<button class="duplicate">Duplicate</button>
+							<button id="fullscreen">Go fullscreen</button>
 						</li>
 					</ul>
-				</li>
-			</ul>
-			<div id="total"></div>
-		</section>
-		<section id="history">
-			<ol>
-			</ol>
-		</section>
-		<div id="sound"></div>
+				</details>
+			</header>
+
+			<div id="fullscreenArea">
+				<div id="sceneArea">
+					<section id="scene" data-roll-count-mod5="0" data-number-style="dots">
+						<div class="diePad">
+							<div class="die" data-result="1">
+								<div class="face face-1">
+									<span>1</span>
+									<svg viewBox="0 0 4 4">
+										<circle r="0.4" cx="2" cy="2" />
+									</svg>
+								</div>
+								<div class="face face-2">
+									<span>2</span>
+									<svg viewBox="0 0 4 4">
+										<circle r="0.4" cx="3" cy="1" />
+										<circle r="0.4" cx="1" cy="3" />
+									</svg>
+								</div>
+								<div class="face face-3">
+									<span>3</span>
+									<svg viewBox="0 0 4 4">
+										<circle r="0.4" cx="3" cy="1" />
+										<circle r="0.4" cx="2" cy="2" />
+										<circle r="0.4" cx="1" cy="3" />
+									</svg>
+								</div>
+								<div class="face face-4">
+									<span>4</span>
+									<svg viewBox="0 0 4 4">
+										<circle r="0.4" cx="1" cy="1" />
+										<circle r="0.4" cx="3" cy="1" />
+										<circle r="0.4" cx="1" cy="3" />
+										<circle r="0.4" cx="3" cy="3" />
+									</svg>
+								</div>
+								<div class="face face-5">
+									<span>5</span>
+									<svg viewBox="0 0 4 4">
+										<circle r="0.4" cx="1" cy="1" />
+										<circle r="0.4" cx="3" cy="1" />
+										<circle r="0.4" cx="2" cy="2" />
+										<circle r="0.4" cx="1" cy="3" />
+										<circle r="0.4" cx="3" cy="3" />
+									</svg>
+								</div>
+								<div class="face face-6">
+									<span>6</span>
+									<svg viewBox="0 0 4 4">
+										<circle r="0.4" cx="1" cy="1" />
+										<circle r="0.4" cx="3" cy="1" />
+										<circle r="0.4" cx="1" cy="2" />
+										<circle r="0.4" cx="3" cy="2" />
+										<circle r="0.4" cx="1" cy="3" />
+										<circle r="0.4" cx="3" cy="3" />
+									</svg>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<section id="history">
+					<ol>
+					</ol>
+				</section>
+			</div>
+
+			<footer>
+				<a href="https://github.com/tremby/dice">Source</a>
+			</footer>
+		</main>
+
+		<audio id="sound" preload>
+			<source src="roll.ogg" type="audio/ogg">
+			<source src="roll.mp3" type="audio/mpeg">
+			<source src="roll.wav" type="audio/wave">
+		</audio>
 	</body>
 </html>
 
