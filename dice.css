@@ -125,7 +125,6 @@ circle {
 	position: absolute;
 	max-width: 100%;
 	bottom: 0;
-	right: 0;
 	overflow: auto;
 	white-space: nowrap;
 	padding-right: 0.5em;
@@ -136,14 +135,15 @@ circle {
 	list-style-position: inside;
 	align-items: baseline;
 	padding: 0;
-	margin-left: auto;
 }
 #history strong {
 	font-size: 150%;
+	transition: font-size 0.3s;
 }
 #history li {
 	opacity: 0.4;
 	margin-left: 2em;
+	transition: opacity 1s;
 }
 #history li:last-child {
 	opacity: 1;

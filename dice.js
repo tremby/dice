@@ -48,7 +48,11 @@ function addToHistory(rolls) {
 	li.appendChild(strong);
 	li.appendChild(document.createTextNode(` (${rolls.join(', ')})`));
 	rollHistoryList.appendChild(li);
-	li.scrollIntoView();
+	li.scrollIntoView({
+		behavior: 'smooth',
+		block: 'end',
+		inline: 'end',
+	});
 }
 
 function updateNumberStyle() {
