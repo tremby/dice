@@ -62,11 +62,12 @@ updateNumberStyle();
 const fullscreenArea = document.querySelector('#fullscreenArea');
 if (!fullscreenArea.requestFullscreen && !fullscreenArea.webkitRequestFullscreen) {
 	document.querySelector('#fullscreen').closest('li').remove();
+} else {
+	document.querySelector('#fullscreen').addEventListener('click', () => {
+		if (fullscreenArea.requestFullscreen) {
+			fullscreenArea.requestFullscreen();
+		} else if (fullscreenArea.webkitRequestFullscreen) {
+			fullscreenArea.webkitRequestFullscreen();
+		}
+	});
 }
-document.querySelector('#fullscreen').addEventListener('click', () => {
-	if (fullscreenArea.requestFullscreen) {
-		fullscreenArea.requestFullscreen();
-	} else if (fullscreenArea.webkitRequestFullscreen) {
-		fullscreenArea.webkitRequestFullscreen();
-	}
-});
