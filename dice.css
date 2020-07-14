@@ -127,7 +127,6 @@ circle {
 	bottom: 0;
 	overflow: auto;
 	white-space: nowrap;
-	padding-right: 0.5em;
 	box-sizing: border-box;
 }
 #history ol {
@@ -142,8 +141,12 @@ circle {
 }
 #history li {
 	opacity: 0.4;
-	margin-left: 2em;
 	transition: opacity 1s;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+#history li + li {
+	margin-left: 1em;
 }
 #history li:last-child {
 	opacity: 1;
