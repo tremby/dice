@@ -6,12 +6,12 @@
 			"type": "image/svg+xml"
 		},
 		{
-			"src": "dice-192.png",
+			"src": "dice-192w.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		},
 		{
-			"src": "dice-180.png",
+			"src": "dice-180w.png",
 			"sizes": "180x180",
 			"type": "image/png"
 		}
