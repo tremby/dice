@@ -60,5 +60,10 @@ for (const radio of document.querySelectorAll('input[name="numberStyle"]')) {
 updateNumberStyle();
 
 document.querySelector('#fullscreen').addEventListener('click', () => {
-	document.querySelector('#fullscreenArea').requestFullscreen();
+	const fullscreenArea = document.querySelector('#fullscreenArea');
+	if (fullscreenArea.requestFullscreen) {
+		fullscreenArea.requestFullscreen();
+	} else if (fullscreenArea.webkitRequestFullscreen) {
+		fullscreenArea.webkitRequestFullscreen();
+	}
 });
