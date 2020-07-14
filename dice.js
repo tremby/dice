@@ -59,8 +59,11 @@ for (const radio of document.querySelectorAll('input[name="numberStyle"]')) {
 }
 updateNumberStyle();
 
+const fullscreenArea = document.querySelector('#fullscreenArea');
+if (!fullscreenArea.requestFullscreen && !fullscreenArea.webkitRequestFullscreen) {
+	document.querySelector('#fullscreen').closest('li').remove();
+}
 document.querySelector('#fullscreen').addEventListener('click', () => {
-	const fullscreenArea = document.querySelector('#fullscreenArea');
 	if (fullscreenArea.requestFullscreen) {
 		fullscreenArea.requestFullscreen();
 	} else if (fullscreenArea.webkitRequestFullscreen) {
