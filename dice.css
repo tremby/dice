@@ -43,6 +43,7 @@ body {
 	user-select: none;
 	height: 100%;
 	width: 100%;
+	pointer-events: none;
 }
 @media (orientation: portrait) {
 	#scene {
@@ -71,6 +72,7 @@ body {
 	transform: var(--pushToFloor);
 	transform-style: preserve-3d;
 	transition: transform 1s;
+	pointer-events: auto;
 }
 
 .face {
