@@ -20,6 +20,12 @@ body {
 		background-color: black;
 		color: white;
 	}
+	a {
+		color: cornflowerblue;
+	}
+	a:visited {
+		color: violet;
+	}
 }
 
 #sceneArea {
