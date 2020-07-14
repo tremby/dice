@@ -16,6 +16,7 @@ updateNumDice();
 
 let rollCount = 0;
 const sound = document.querySelector('#sound');
+const rollButton = document.querySelector('#roll');
 function roll() {
 	scene.dataset.rollCountMod5 = ++rollCount % 5;
 	const rolls = [];
@@ -31,14 +32,11 @@ function roll() {
 		sound.currentTime = 0;
 		sound.play();
 	}
+
+	rollButton.focus();
 }
 scene.addEventListener('click', roll);
-document.body.addEventListener('keydown', (event) => {
-	if (event.key === ' ') {
-		event.preventDefault();
-		roll();
-	}
-});
+rollButton.addEventListener('click', roll);
 
 const rollHistoryList = document.querySelector('#history ol');
 function addToHistory(rolls) {
