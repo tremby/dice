@@ -18,8 +18,10 @@ self.addEventListener('install', async (event) => {
 	event.waitUntil(cached);
 });
 
-self.addEventListener('fetch', async (event) => {
-	console.log("request for", event.request.url);
-	const response = await caches.match(event.request);
-	event.respondWith(response || fetch(event.request));
+self.addEventListener('fetch', (event) => {
+	event.respondWith(async function() {
+		const cachedResponse = await caches.match(event.request);
+		if (cachedResponse) return cachedResponse;
+		return fetch(event.request);
+	}());
 });
