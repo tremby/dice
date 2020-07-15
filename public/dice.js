@@ -32,9 +32,10 @@ updateNumDice(localStorage.getItem('numDice'));
 
 // Save/load sound option
 const soundCheckbox = document.querySelector('input[name="sound"]');
-function setSoundOption(value) {
-	soundCheckbox.checked = value;
-	localStorage.setItem('sound', value ? 'true' : 'false');
+function setSoundOption(value = null) {
+	const newValue = value == null ? soundCheckbox.checked : value;
+	soundCheckbox.checked = newValue;
+	localStorage.setItem('sound', newValue ? 'true' : 'false');
 }
 soundCheckbox.addEventListener('change', () => setSoundOption(soundCheckbox.checked));
 setSoundOption(localStorage.getItem('sound') === 'true');
