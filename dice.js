@@ -5,7 +5,7 @@ const numDiceInput = document.querySelector('input[name="numDice"]');
 function updateNumDice(value = null) {
 	const newNumDice = parseInt(value == null ? numDiceInput.value : value);
 	const oldNumDice = scene.children.length;
-	numDiceInput.value = value;
+	numDiceInput.value = newNumDice;
 	while (scene.children.length > newNumDice) {
 		scene.children[newNumDice].remove();
 	}
