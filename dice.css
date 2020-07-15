@@ -145,6 +145,7 @@ header {
 	position: absolute;
 	padding: 0.5em;
 	z-index: 1;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 header ul {
 	list-style-type: none;
@@ -174,5 +175,8 @@ footer {
 	}
 	:fullscreen {
 		background-color: black;
+	}
+	header {
+		background-color: rgba(0, 0, 0, 0.8);
 	}
 }
