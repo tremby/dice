@@ -9,9 +9,11 @@ self.addEventListener('install', async (event) => {
 		'/dice.svg',
 		'/index.html',
 		'/manifest.webmanifest',
-		'/roll.mp3',
-		'/roll.ogg',
-		'/roll.wav',
+		// Don't cache the audio, because they return 206 responses
+		// which can't be cached
+		// '/roll.mp3',
+		// '/roll.ogg',
+		// '/roll.wav',
 	]);
 	event.waitUntil(cached);
 });
