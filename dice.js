@@ -92,6 +92,7 @@ if (fullscreenArea.requestFullscreen || fullscreenArea.webkitRequestFullscreen) 
 		} else if (fullscreenArea.webkitRequestFullscreen) {
 			fullscreenArea.webkitRequestFullscreen();
 		}
+		rollButton.focus();
 	});
 } else {
 	// Where not supported, just hide certain UI elements; this is currently
@@ -99,6 +100,7 @@ if (fullscreenArea.requestFullscreen || fullscreenArea.webkitRequestFullscreen) 
 	fullscreenButton.addEventListener('click', () => {
 		document.querySelector('header').style.display = 'none';
 		document.querySelector('footer').style.display = 'none';
+		rollButton.focus();
 	});
 }
 
