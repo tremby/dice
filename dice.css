@@ -209,6 +209,10 @@ header li + li {
 	margin-top: 0.5em;
 }
 
+#header-fullscreen-fallback {
+	display: none;
+}
+
 /*
  * Link to source code
  */

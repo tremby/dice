@@ -95,11 +95,18 @@ if (fullscreenArea.requestFullscreen || fullscreenArea.webkitRequestFullscreen) 
 		rollButton.focus();
 	});
 } else {
-	// Where not supported, just hide certain UI elements; this is currently
-	// reversible only by the user hitting refresh
+	// Where not supported, hide certain UI elements and show a button to
+	// revert
 	fullscreenButton.addEventListener('click', () => {
-		document.querySelector('header').style.display = 'none';
+		document.querySelector('#header-main').style.display = 'none';
+		document.querySelector('#header-fullscreen-fallback').style.display = 'block';
 		document.querySelector('footer').style.display = 'none';
+		rollButton.focus();
+	});
+	document.querySelector('#unfullscreen').addEventListener('click', () => {
+		document.querySelector('#header-main').style.display = '';
+		document.querySelector('#header-fullscreen-fallback').style.display = '';
+		document.querySelector('footer').style.display = '';
 		rollButton.focus();
 	});
 }

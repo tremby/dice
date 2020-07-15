@@ -26,60 +26,65 @@
 	<body>
 		<main>
 			<header>
-				<h1>Dice</h1>
+				<div id="header-main">
+					<h1>Dice</h1>
 
-				<details>
-					<summary>Instructions</summary>
-					<p><strong>Click/tap dice or press the button to roll</strong>. (You can also press the button with enter or space once it's focused.)</p>
-					<p>If your device supports it and you enable it under "configuration", you can also <strong>shake to roll</strong>.</p>
-					<p><strong>Go to fullscreen mode</strong> and/or <strong>add this page to your home screen</strong> for a cleaner interface.</p>
-				</details>
+					<details>
+						<summary>Instructions</summary>
+						<p><strong>Click/tap dice or press the button to roll</strong>. (You can also press the button with enter or space once it's focused.)</p>
+						<p>If your device supports it and you enable it under "configuration", you can also <strong>shake to roll</strong>.</p>
+						<p><strong>Go to fullscreen mode</strong> and/or <strong>add this page to your home screen</strong> for a cleaner interface.</p>
+					</details>
 
-				<details>
-					<summary>Configuration</summary>
-					<ul>
-						<li>
-							<label>
-								Number of dice
-								<input type="range" name="numDice" min="1" max="6" value="2">
-							</label>
-						</li>
-						<li>
-							<fieldset>
-								<legend>Number style</legend>
-								<ul>
-									<li>
-										<label>
-											<input type="radio" name="numberStyle" value="dots" checked>
-											Dots
-										</label>
-									</li>
-									<li>
-										<label>
-											<input type="radio" name="numberStyle" value="numbers">
-											Numbers
-										</label>
-									</li>
-								</ul>
-							</fieldset>
-						</li>
-						<li>
-							<label>
-								<input type="checkbox" name="shake">
-								Roll on device shake
-							</label>
-						</li>
-						<li>
-							<label>
-								<input type="checkbox" name="sound" checked>
-								Sound
-							</label>
-						</li>
-					</ul>
-				</details>
+					<details>
+						<summary>Configuration</summary>
+						<ul>
+							<li>
+								<label>
+									Number of dice
+									<input type="range" name="numDice" min="1" max="6" value="2">
+								</label>
+							</li>
+							<li>
+								<fieldset>
+									<legend>Number style</legend>
+									<ul>
+										<li>
+											<label>
+												<input type="radio" name="numberStyle" value="dots" checked>
+												Dots
+											</label>
+										</li>
+										<li>
+											<label>
+												<input type="radio" name="numberStyle" value="numbers">
+												Numbers
+											</label>
+										</li>
+									</ul>
+								</fieldset>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="shake">
+									Roll on device shake
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="sound" checked>
+									Sound
+								</label>
+							</li>
+						</ul>
+					</details>
 
-				<button id="fullscreen">Go fullscreen</button>
-				<button id="roll">Roll</button>
+					<button id="fullscreen">Go fullscreen</button>
+					<button id="roll">Roll</button>
+				</div>
+				<div id="header-fullscreen-fallback">
+					<button id="unfullscreen">Show UI</button>
+				</div>
 			</header>
 
 			<div id="fullscreenArea">
