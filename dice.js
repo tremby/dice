@@ -61,11 +61,15 @@ for (const radio of document.querySelectorAll('input[name="numberStyle"]')) {
 }
 updateNumberStyle();
 
+const fullscreenButton = document.querySelector('#fullscreen');
 const fullscreenArea = document.querySelector('#fullscreenArea');
 if (!fullscreenArea.requestFullscreen && !fullscreenArea.webkitRequestFullscreen) {
-	document.querySelector('#fullscreen').closest('li').remove();
+	fullscreenButton.addEventListener('click', () => {
+		document.querySelector('header').style.display = 'none';
+		document.querySelector('footer').style.display = 'none';
+	});
 } else {
-	document.querySelector('#fullscreen').addEventListener('click', () => {
+	fullscreenButton.addEventListener('click', () => {
 		if (fullscreenArea.requestFullscreen) {
 			fullscreenArea.requestFullscreen();
 		} else if (fullscreenArea.webkitRequestFullscreen) {
