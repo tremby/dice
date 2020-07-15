@@ -99,12 +99,39 @@ body {
  * On each successive roll, the dice are rotated a pseudo-random number of full
  * turns so it looks more like they're tumbling randomly rather than just going
  * directly to their target face
+ *
+ * This was generated with the script util/spins.js
  */
-#scene[data-roll-count-mod5="0"] { --spin: rotateX(0turn) rotateY(0turn) rotateZ(0turn); }
-#scene[data-roll-count-mod5="1"] { --spin: rotateX(0turn) rotateY(1turn) rotateZ(-1turn); }
-#scene[data-roll-count-mod5="2"] { --spin: rotateX(-1turn) rotateY(1turn) rotateZ(0turn); }
-#scene[data-roll-count-mod5="3"] { --spin: rotateX(0turn) rotateY(0turn) rotateZ(1turn); }
-#scene[data-roll-count-mod5="4"] { --spin: rotateX(1turn) rotateY(-1turn) rotateZ(1turn); }
+#scene[data-roll-count-mod5="0"] > :nth-child(6n+1) { --spin: rotateX(0turn) rotateY(0turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="1"] > :nth-child(6n+1) { --spin: rotateX(2turn) rotateY(1turn) rotateZ(-2turn); }
+#scene[data-roll-count-mod5="2"] > :nth-child(6n+1) { --spin: rotateX(-1turn) rotateY(2turn) rotateZ(-3turn); }
+#scene[data-roll-count-mod5="3"] > :nth-child(6n+1) { --spin: rotateX(-3turn) rotateY(1turn) rotateZ(-1turn); }
+#scene[data-roll-count-mod5="4"] > :nth-child(6n+1) { --spin: rotateX(-1turn) rotateY(-1turn) rotateZ(-2turn); }
+#scene[data-roll-count-mod5="0"] > :nth-child(6n+2) { --spin: rotateX(0turn) rotateY(0turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="1"] > :nth-child(6n+2) { --spin: rotateX(-2turn) rotateY(2turn) rotateZ(-1turn); }
+#scene[data-roll-count-mod5="2"] > :nth-child(6n+2) { --spin: rotateX(0turn) rotateY(3turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="3"] > :nth-child(6n+2) { --spin: rotateX(2turn) rotateY(2turn) rotateZ(1turn); }
+#scene[data-roll-count-mod5="4"] > :nth-child(6n+2) { --spin: rotateX(-1turn) rotateY(1turn) rotateZ(2turn); }
+#scene[data-roll-count-mod5="0"] > :nth-child(6n+3) { --spin: rotateX(0turn) rotateY(0turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="1"] > :nth-child(6n+3) { --spin: rotateX(3turn) rotateY(1turn) rotateZ(-1turn); }
+#scene[data-roll-count-mod5="2"] > :nth-child(6n+3) { --spin: rotateX(0turn) rotateY(2turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="3"] > :nth-child(6n+3) { --spin: rotateX(2turn) rotateY(3turn) rotateZ(-2turn); }
+#scene[data-roll-count-mod5="4"] > :nth-child(6n+3) { --spin: rotateX(0turn) rotateY(1turn) rotateZ(-3turn); }
+#scene[data-roll-count-mod5="0"] > :nth-child(6n+4) { --spin: rotateX(0turn) rotateY(0turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="1"] > :nth-child(6n+4) { --spin: rotateX(2turn) rotateY(-1turn) rotateZ(1turn); }
+#scene[data-roll-count-mod5="2"] > :nth-child(6n+4) { --spin: rotateX(5turn) rotateY(0turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="3"] > :nth-child(6n+4) { --spin: rotateX(2turn) rotateY(-1turn) rotateZ(1turn); }
+#scene[data-roll-count-mod5="4"] > :nth-child(6n+4) { --spin: rotateX(0turn) rotateY(0turn) rotateZ(2turn); }
+#scene[data-roll-count-mod5="0"] > :nth-child(6n+5) { --spin: rotateX(0turn) rotateY(0turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="1"] > :nth-child(6n+5) { --spin: rotateX(2turn) rotateY(1turn) rotateZ(-2turn); }
+#scene[data-roll-count-mod5="2"] > :nth-child(6n+5) { --spin: rotateX(0turn) rotateY(3turn) rotateZ(-1turn); }
+#scene[data-roll-count-mod5="3"] > :nth-child(6n+5) { --spin: rotateX(-2turn) rotateY(1turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="4"] > :nth-child(6n+5) { --spin: rotateX(0turn) rotateY(2turn) rotateZ(2turn); }
+#scene[data-roll-count-mod5="0"] > :nth-child(6n+6) { --spin: rotateX(0turn) rotateY(0turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="1"] > :nth-child(6n+6) { --spin: rotateX(-2turn) rotateY(2turn) rotateZ(1turn); }
+#scene[data-roll-count-mod5="2"] > :nth-child(6n+6) { --spin: rotateX(1turn) rotateY(1turn) rotateZ(0turn); }
+#scene[data-roll-count-mod5="3"] > :nth-child(6n+6) { --spin: rotateX(-1turn) rotateY(0turn) rotateZ(2turn); }
+#scene[data-roll-count-mod5="4"] > :nth-child(6n+6) { --spin: rotateX(2turn) rotateY(1turn) rotateZ(1turn); }
 
 /*
  * A cube
