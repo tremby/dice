@@ -47,39 +47,42 @@ body {
 	/* Padding on each side of a die, as a fraction of the --dieEdge */
 	--diePad: 0.3;
 
+	/* Helpers */
+	--minAxis: min(100vw, 100vh);
+	--maxAxis: max(100vw, 100vh);
+
+	/* Space available including padding for each die */
+	--maxDieSpace: var(--minAxis);
+	--idealDieSpace: calc(30vw + 30vh);
+	--dieSpace: min(var(--maxDieSpace), var(--idealDieSpace));
+
 	/* Side length of die edges */
-	--maxDiceAlongShortAxis: 3;
-	--dieEdge: calc(min(100vw, 100vh) / (1 + 2 * var(--diePad)) / var(--maxDiceAlongShortAxis));
+	--dieEdge: calc(var(--dieSpace) / (1 + 2 * var(--diePad)));
 
 	/* Transforms to either push or pull by half an edge length */
 	--pullToSurface: translateZ(calc(var(--dieEdge) / 2));
 	--pushToFloor: translateZ(calc(-1 * var(--dieEdge) / 2));
 }
-#scene[data-dice-num="1"] { --maxDiceAlongShortAxis: 1; }
-#scene[data-dice-num="2"] { --maxDiceAlongShortAxis: 2; }
-#scene[data-dice-num="3"] { --maxDiceAlongShortAxis: 2; }
-#scene[data-dice-num="4"] { --maxDiceAlongShortAxis: 2; }
-#scene[data-dice-num="5"] { --maxDiceAlongShortAxis: 3; }
-#scene[data-dice-num="6"] { --maxDiceAlongShortAxis: 3; }
+#scene[data-dice-num="1"] { --idealDieSpace: max(100vw, 100vh); }
+#scene[data-dice-num="2"] { --idealDieSpace: calc(var(--maxAxis) / 2); }
+#scene[data-dice-num="3"] { --idealDieSpace: calc(var(--minAxis) / 2); }
+#scene[data-dice-num="4"] { --idealDieSpace: calc(var(--minAxis) / 2); }
+#scene[data-dice-num="5"] { --idealDieSpace: calc(var(--maxAxis) / 3); }
+#scene[data-dice-num="6"] { --idealDieSpace: calc(var(--maxAxis) / 3); }
 
 @media (min-aspect-ratio: 3 / 2), (max-aspect-ratio: 2 / 3) {
-	#scene[data-dice-num="5"] { --maxDiceAlongShortAxis: 2; }
-	#scene[data-dice-num="6"] { --maxDiceAlongShortAxis: 2; }
+	#scene[data-dice-num="3"] { --idealDieSpace: calc(var(--maxAxis) / 3); }
+	#scene[data-dice-num="5"] { --idealDieSpace: calc(var(--minAxis) / 2); }
+	#scene[data-dice-num="6"] { --idealDieSpace: calc(var(--minAxis) / 2); }
+}
+@media (min-aspect-ratio: 5 / 2), (max-aspect-ratio: 2 / 5) {
+	#scene[data-dice-num="5"] { --idealDieSpace: calc(var(--maxAxis) / 5); }
 }
 @media (min-aspect-ratio: 2), (max-aspect-ratio: 1 / 2) {
-	#scene[data-dice-num="2"] { --maxDiceAlongShortAxis: 1; }
+	#scene[data-dice-num="4"] { --idealDieSpace: calc(var(--maxAxis) / 4); }
 }
 @media (min-aspect-ratio: 3), (max-aspect-ratio: 1 / 3) {
-	#scene[data-dice-num="3"] { --maxDiceAlongShortAxis: 1; }
-}
-@media (min-aspect-ratio: 4), (max-aspect-ratio: 1 / 4) {
-	#scene[data-dice-num="4"] { --maxDiceAlongShortAxis: 1; }
-}
-@media (min-aspect-ratio: 5), (max-aspect-ratio: 1 / 5) {
-	#scene[data-dice-num="5"] { --maxDiceAlongShortAxis: 1; }
-}
-@media (min-aspect-ratio: 6), (max-aspect-ratio: 1 / 6) {
-	#scene[data-dice-num="6"] { --maxDiceAlongShortAxis: 1; }
+	#scene[data-dice-num="6"] { --idealDieSpace: calc(var(--maxAxis) / 6); }
 }
 
 /*
