@@ -2,6 +2,9 @@
 	/* Side length of die edges */
 	--dieEdge: calc(9vw + 9vh);
 
+	/* Padding on each side of a die, as a fraction of the --dieEdge */
+	--diePad: 0.3;
+
 	/* Transforms to either push or pull by half an edge length */
 	--pullToSurface: translateZ(calc(var(--dieEdge) / 2));
 	--pushToFloor: translateZ(calc(-1 * var(--dieEdge) / 2));
@@ -59,7 +62,7 @@ body {
  * other (which would make them intersect while rotating)
  */
 .diePad {
-	padding: calc(var(--dieEdge) * 0.3);
+	padding: calc(var(--dieEdge) * var(--diePad));
 	transform-style: preserve-3d;
 	display: flex;
 }
