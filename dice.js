@@ -120,6 +120,7 @@ if (window.DeviceMotionEvent) {
 	const SHAKE_COOLOFF = 1e3;
 
 	let lastShakeTime = null;
+	let noMotionTimeout;
 
 	const turns = {
 		// Changes of linear acceleration direction
@@ -136,6 +137,8 @@ if (window.DeviceMotionEvent) {
 	function handleMotion(event) {
 		const time = new Date();
 		const minTime = time - 1e3;
+
+		clearTimeout(noMotionTimeout);
 
 		// See if we've changed direction in any of the six dimensions
 		for (const [dim, value, thresholdRange] of [
@@ -189,14 +192,28 @@ if (window.DeviceMotionEvent) {
 
 	function setRollOnShakeOption(value) {
 		shakeCheckbox.checked = value;
-		if (value) window.addEventListener('devicemotion', handleMotion);
-		else window.removeEventListener('devicemotion', handleMotion);
+		if (value) {
+			window.addEventListener('devicemotion', handleMotion);
+
+			// If we don't get any motion event within a short time,
+			// likely it isn't supported after all
+			noMotionTimeout = setTimeout(() => {
+				shakeNotSupported();
+				window.removeEventListener('devicemotion', handleMotion);
+			}, 1e3);
+		} else {
+			clearTimeout(noMotionTimeout);
+			window.removeEventListener('devicemotion', handleMotion);
+		}
 		localStorage.setItem('shake', value ? 'true' : 'false');
 	}
 	shakeCheckbox.addEventListener('change', () => setRollOnShakeOption(shakeCheckbox.checked));
 	setRollOnShakeOption(localStorage.getItem('shake') === 'true');
 } else {
 	// Motion not supported; advise the user
+	shakeNotSupported();
+}
+function shakeNotSupported() {
 	shakeCheckbox.disabled = true;
 	shakeCheckbox.closest('li').append(" (not available on this browser)");
 }
