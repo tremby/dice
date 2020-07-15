@@ -34,8 +34,6 @@ updateNumDice(localStorage.getItem('numDice'));
 const soundCheckbox = document.querySelector('input[name="sound"]');
 function setSoundOption(value) {
 	soundCheckbox.checked = value;
-	if (value) window.addEventListener('devicemotion', handleMotion);
-	else window.removeEventListener('devicemotion', handleMotion);
 	localStorage.setItem('sound', value ? 'true' : 'false');
 }
 soundCheckbox.addEventListener('change', () => setSoundOption(soundCheckbox.checked));
