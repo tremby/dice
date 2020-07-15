@@ -1,7 +1,10 @@
 :root {
-	--pullToSurface: translateZ(calc(var(--dieSide) / 2));
-	--pushToFloor: translateZ(calc(-1 * var(--dieSide) / 2));
-	--dieSide: max(18vw, 18vh);
+	/* Side length of die edges */
+	--dieEdge: max(18vw, 18vh);
+
+	/* Transforms to either push or pull by half an edge length */
+	--pullToSurface: translateZ(calc(var(--dieEdge) / 2));
+	--pushToFloor: translateZ(calc(-1 * var(--dieEdge) / 2));
 }
 
 html {
@@ -14,19 +17,33 @@ body {
 	background-color: white;
 	color: black;
 }
+
+/*
+ * Workaround for Chrome, which for some reason sets the background colour of
+ * whatever element is fullscreened to black
+ */
 :fullscreen {
 	background-color: white;
 }
 
+/*
+ * Add some space before the roll button
+ */
+#roll {
+	margin-top: 1em;
+}
+
+/*
+ * The full-height area for the 3D scene to be centred within
+ */
 #sceneArea {
 	display: flex;
 	height: 100vh;
 }
 
-#roll {
-	margin-top: 1em;
-}
-
+/*
+ * The 3D area
+ */
 #scene {
 	perspective: max(100vw, 100vh);
 	display: flex;
@@ -44,22 +61,34 @@ body {
 	}
 }
 
+/*
+ * Some space around the die, so that no two dice are right up against each
+ * other (which would make them intersect while rotating)
+ */
 .diePad {
-	padding: calc(var(--dieSide) * 0.3);
+	padding: calc(var(--dieEdge) * 0.3);
 	transform-style: preserve-3d;
 	display: flex;
 }
 
+/*
+ * On each successive roll, the dice are rotated a pseudo-random number of full
+ * turns so it looks more like they're tumbling randomly rather than just going
+ * directly to their target face
+ */
 #scene[data-roll-count-mod5="0"] { --spin: rotateX(0turn) rotateY(0turn) rotateZ(0turn); }
 #scene[data-roll-count-mod5="1"] { --spin: rotateX(0turn) rotateY(1turn) rotateZ(-1turn); }
 #scene[data-roll-count-mod5="2"] { --spin: rotateX(-1turn) rotateY(1turn) rotateZ(0turn); }
 #scene[data-roll-count-mod5="3"] { --spin: rotateX(0turn) rotateY(0turn) rotateZ(1turn); }
 #scene[data-roll-count-mod5="4"] { --spin: rotateX(1turn) rotateY(-1turn) rotateZ(1turn); }
 
+/*
+ * A cube
+ */
 .die {
 	position: relative;
-	width: var(--dieSide);
-	height: var(--dieSide);
+	width: var(--dieEdge);
+	height: var(--dieEdge);
 	transform: var(--pushToFloor);
 	transform-style: preserve-3d;
 	transition: transform 1s;
@@ -67,14 +96,21 @@ body {
 	margin: auto;
 }
 
+/*
+ * A face of a cube
+ */
 .face {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	color: white;
-	font-size: calc(var(--dieSide) / 2);
+	font-size: calc(var(--dieEdge) / 2);
 	display: flex;
 }
+
+/*
+ * Each specific numbered face of a cube
+ */
 .face-1 { transform: rotateY(0turn) var(--pullToSurface); background-color: #800; }
 .face-2 { transform: rotateY(0.25turn) var(--pullToSurface); background-color: #900; }
 .face-3 { transform: rotateX(0.25turn) var(--pullToSurface); background-color: #a00; }
@@ -82,10 +118,9 @@ body {
 .face-5 { transform: rotateY(-0.25turn) var(--pullToSurface); background-color: #c00; }
 .face-6 { transform: rotateY(0.5turn) var(--pullToSurface); background-color: #d00; }
 
-.die span, .die svg {
-	margin: auto;
-}
-
+/*
+ * Rotations to make a die show a particular face
+ */
 .die[data-result="1"] { transform: var(--pushToFloor) rotateY(0turn) var(--spin); }
 .die[data-result="2"] { transform: var(--pushToFloor) rotateY(-0.25turn) var(--spin); }
 .die[data-result="3"] { transform: var(--pushToFloor) rotateX(-0.25turn) var(--spin); }
@@ -93,6 +128,16 @@ body {
 .die[data-result="5"] { transform: var(--pushToFloor) rotateY(0.25turn) var(--spin); }
 .die[data-result="6"] { transform: var(--pushToFloor) rotateY(-0.5turn) var(--spin); }
 
+/*
+ * Centre the number within the die face
+ */
+.die span, .die svg {
+	margin: auto;
+}
+
+/*
+ * Choose between number styles based on user preference
+ */
 #scene[data-number-style="dots"] .die span {
 	display: none;
 }
@@ -100,6 +145,9 @@ body {
 	display: none;
 }
 
+/*
+ * Set the "dots" version's size and styling
+ */
 .die svg {
 	width: 90%;
 	height: 90%;
@@ -108,6 +156,9 @@ circle {
 	fill: white;
 }
 
+/*
+ * Roll history list
+ */
 #history {
 	position: absolute;
 	max-width: 100%;
@@ -141,6 +192,9 @@ circle {
 	font-size: 450%;
 }
 
+/*
+ * Title, instructions and configuration area
+ */
 header {
 	position: absolute;
 	padding: 0.5em;
@@ -155,6 +209,9 @@ header li + li {
 	margin-top: 0.5em;
 }
 
+/*
+ * Link to source code
+ */
 footer {
 	position: absolute;
 	right: 0;
@@ -162,6 +219,9 @@ footer {
 	padding: 0.5em;
 }
 
+/*
+ * Style overrides for dark mode
+ */
 @media (prefers-color-scheme: dark) {
 	body {
 		background-color: black;

@@ -1,5 +1,6 @@
 const scene = document.querySelector('#scene');
 
+// Change the number of device when user moves the slider
 const numDiceInput = document.querySelector('input[name="numDice"]');
 function updateNumDice() {
 	const newNumDice = parseInt(numDiceInput.value);
@@ -14,6 +15,7 @@ function updateNumDice() {
 numDiceInput.addEventListener('change', updateNumDice);
 updateNumDice();
 
+// Roll the dice
 let rollCount = 0;
 const sound = document.querySelector('#sound');
 const rollButton = document.querySelector('#roll');
@@ -38,6 +40,7 @@ function roll() {
 scene.addEventListener('click', roll);
 rollButton.addEventListener('click', roll);
 
+// Update roll history
 const rollHistoryList = document.querySelector('#history ol');
 function addToHistory(rolls) {
 	const li = document.createElement('li');
@@ -53,6 +56,7 @@ function addToHistory(rolls) {
 	});
 }
 
+// Change the visual number style on the dice when the user changes the option
 function updateNumberStyle() {
 	scene.dataset.numberStyle = document.querySelector('input[name="numberStyle"]:checked').value;
 }
@@ -61,14 +65,11 @@ for (const radio of document.querySelectorAll('input[name="numberStyle"]')) {
 }
 updateNumberStyle();
 
+// Go to fullscreen mode on user command
 const fullscreenButton = document.querySelector('#fullscreen');
 const fullscreenArea = document.querySelector('#fullscreenArea');
-if (!fullscreenArea.requestFullscreen && !fullscreenArea.webkitRequestFullscreen) {
-	fullscreenButton.addEventListener('click', () => {
-		document.querySelector('header').style.display = 'none';
-		document.querySelector('footer').style.display = 'none';
-	});
-} else {
+if (fullscreenArea.requestFullscreen || fullscreenArea.webkitRequestFullscreen) {
+	// Use real fullscreen mode where supported
 	fullscreenButton.addEventListener('click', () => {
 		if (fullscreenArea.requestFullscreen) {
 			fullscreenArea.requestFullscreen();
@@ -76,8 +77,16 @@ if (!fullscreenArea.requestFullscreen && !fullscreenArea.webkitRequestFullscreen
 			fullscreenArea.webkitRequestFullscreen();
 		}
 	});
+} else {
+	// Where not supported, just hide certain UI elements; this is currently
+	// reversible only by the user hitting refresh
+	fullscreenButton.addEventListener('click', () => {
+		document.querySelector('header').style.display = 'none';
+		document.querySelector('footer').style.display = 'none';
+	});
 }
 
+// Handle shake-to-roll
 const shakeCheckbox = document.querySelector('input[name="shake"]');
 if (window.DeviceMotionEvent) {
 	const ACCELERATION_THRESHOLD_RANGE = [8, 14];
@@ -153,7 +162,6 @@ if (window.DeviceMotionEvent) {
 		}
 	}
 
-
 	shakeCheckbox.addEventListener('change', () => {
 		if (shakeCheckbox.checked) {
 			window.addEventListener('devicemotion', handleMotion);
@@ -162,6 +170,7 @@ if (window.DeviceMotionEvent) {
 		}
 	});
 } else {
+	// Motion not supported; advise the user
 	shakeCheckbox.disabled = true;
 	shakeCheckbox.closest('li').append(" (not available on this browser)");
 }
