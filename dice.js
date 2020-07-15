@@ -3,8 +3,8 @@ const scene = document.querySelector('#scene');
 // Change the number of device when user moves the slider
 const numDiceInput = document.querySelector('input[name="numDice"]');
 function updateNumDice(value = null) {
-	const newNumDice = parseInt(value == null ? numDiceInput.value : value);
 	const oldNumDice = scene.children.length;
+	const newNumDice = parseInt(value == null ? numDiceInput.value : value, 10);
 	numDiceInput.value = newNumDice;
 	while (scene.children.length > newNumDice) {
 		scene.children[newNumDice].remove();
