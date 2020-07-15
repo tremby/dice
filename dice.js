@@ -18,6 +18,9 @@ function updateNumDice(value = null) {
 		scene.appendChild(scene.children[0].cloneNode(true));
 	}
 
+	// Hint for CSS
+	scene.dataset.diceNum = newNumDice;
+
 	// Save configuration
 	localStorage.setItem('numDice', newNumDice);
 }
