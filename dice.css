@@ -18,22 +18,6 @@ body {
 	background-color: white;
 }
 
-@media (prefers-color-scheme: dark) {
-	body {
-		background-color: black;
-		color: white;
-	}
-	a {
-		color: cornflowerblue;
-	}
-	a:visited {
-		color: violet;
-	}
-	:fullscreen {
-		background-color: black;
-	}
-}
-
 #sceneArea {
 	display: flex;
 	height: 100vh;
@@ -175,4 +159,20 @@ footer {
 	right: 0;
 	top: 0;
 	padding: 0.5em;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: black;
+		color: white;
+	}
+	a {
+		color: cornflowerblue;
+	}
+	a:visited {
+		color: violet;
+	}
+	:fullscreen {
+		background-color: black;
+	}
 }
