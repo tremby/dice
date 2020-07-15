@@ -3,15 +3,22 @@ const scene = document.querySelector('#scene');
 // Change the number of device when user moves the slider
 const numDiceInput = document.querySelector('input[name="numDice"]');
 function updateNumDice(value = null) {
+	// Determine old and new values
 	const oldNumDice = scene.children.length;
 	const newNumDice = parseInt(value == null ? numDiceInput.value : value, 10);
+
+	// Ensure input has the new value (needed when restoring configuration)
 	numDiceInput.value = newNumDice;
+
+	// Add or remove dice
 	while (scene.children.length > newNumDice) {
 		scene.children[newNumDice].remove();
 	}
 	while (scene.children.length < newNumDice) {
 		scene.appendChild(scene.children[0].cloneNode(true));
 	}
+
+	// Save configuration
 	localStorage.setItem('numDice', newNumDice);
 }
 numDiceInput.addEventListener('change', () => updateNumDice());
