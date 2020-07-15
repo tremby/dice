@@ -193,3 +193,10 @@ if (window.DeviceMotionEvent) {
 	shakeCheckbox.disabled = true;
 	shakeCheckbox.closest('li').append(" (not available on this browser)");
 }
+
+// Install service worker for offline mode
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/sw.js').then(() => {
+		console.log("Service worker registered");
+	});
+}
