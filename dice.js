@@ -15,7 +15,10 @@ function updateNumDice(value = null) {
 		scene.children[newNumDice].remove();
 	}
 	while (scene.children.length < newNumDice) {
-		scene.appendChild(scene.children[0].cloneNode(true));
+		const newNode = scene.children[0].cloneNode(true);
+		const newDie = newNode.querySelector('.die');
+		newDie.dataset.result = 1;
+		scene.appendChild(newNode);
 	}
 
 	// Hint for CSS
