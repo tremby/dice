@@ -1,6 +1,6 @@
 :root {
 	/* Side length of die edges */
-	--dieEdge: max(18vw, 18vh);
+	--dieEdge: calc(9vw + 9vh);
 
 	/* Transforms to either push or pull by half an edge length */
 	--pullToSurface: translateZ(calc(var(--dieEdge) / 2));
