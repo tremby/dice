@@ -50,15 +50,8 @@ body {
 	flex-wrap: wrap;
 	justify-content: center;
 	user-select: none;
-	height: 100%;
-	width: 100%;
 	pointer-events: none;
 	margin: auto;
-}
-@media (orientation: portrait) {
-	#scene {
-		flex-direction: column;
-	}
 }
 
 /*
