@@ -2,18 +2,31 @@ const scene = document.querySelector('#scene');
 
 // Change the number of device when user moves the slider
 const numDiceInput = document.querySelector('input[name="numDice"]');
-function updateNumDice() {
-	const newNumDice = parseInt(numDiceInput.value);
+function updateNumDice(value = null) {
+	const newNumDice = parseInt(value == null ? numDiceInput.value : value);
 	const oldNumDice = scene.children.length;
+	numDiceInput.value = value;
 	while (scene.children.length > newNumDice) {
 		scene.children[newNumDice].remove();
 	}
 	while (scene.children.length < newNumDice) {
 		scene.appendChild(scene.children[0].cloneNode(true));
 	}
+	localStorage.setItem('numDice', newNumDice);
 }
-numDiceInput.addEventListener('change', updateNumDice);
-updateNumDice();
+numDiceInput.addEventListener('change', () => updateNumDice());
+updateNumDice(localStorage.getItem('numDice'));
+
+// Save/load sound option
+const soundCheckbox = document.querySelector('input[name="sound"]');
+function setSoundOption(value) {
+	soundCheckbox.checked = value;
+	if (value) window.addEventListener('devicemotion', handleMotion);
+	else window.removeEventListener('devicemotion', handleMotion);
+	localStorage.setItem('sound', value ? 'true' : 'false');
+}
+soundCheckbox.addEventListener('change', () => setSoundOption(soundCheckbox.checked));
+setSoundOption(localStorage.getItem('sound') === 'true');
 
 // Roll the dice
 let rollCount = 0;
@@ -30,7 +43,7 @@ function roll() {
 
 	addToHistory(rolls);
 
-	if (document.querySelector('input[name="sound"]').checked) {
+	if (soundCheckbox.checked) {
 		sound.currentTime = 0;
 		sound.play();
 	}
@@ -57,13 +70,16 @@ function addToHistory(rolls) {
 }
 
 // Change the visual number style on the dice when the user changes the option
-function updateNumberStyle() {
-	scene.dataset.numberStyle = document.querySelector('input[name="numberStyle"]:checked').value;
+function updateNumberStyle(value = null) {
+	const newValue = value == null ? document.querySelector('input[name="numberStyle"]:checked').value : value;
+	scene.dataset.numberStyle = newValue;
+	document.querySelector(`input[name="numberStyle"][value="${newValue}"]`).checked = true;
+	localStorage.setItem('numberStyle', newValue);
 }
 for (const radio of document.querySelectorAll('input[name="numberStyle"]')) {
-	radio.addEventListener('change', updateNumberStyle);
+	radio.addEventListener('change', () => updateNumberStyle());
 }
-updateNumberStyle();
+updateNumberStyle(localStorage.getItem('numberStyle'));
 
 // Go to fullscreen mode on user command
 const fullscreenButton = document.querySelector('#fullscreen');
@@ -162,13 +178,14 @@ if (window.DeviceMotionEvent) {
 		}
 	}
 
-	shakeCheckbox.addEventListener('change', () => {
-		if (shakeCheckbox.checked) {
-			window.addEventListener('devicemotion', handleMotion);
-		} else {
-			window.removeEventListener('devicemotion', handleMotion);
-		}
-	});
+	function setRollOnShakeOption(value) {
+		shakeCheckbox.checked = value;
+		if (value) window.addEventListener('devicemotion', handleMotion);
+		else window.removeEventListener('devicemotion', handleMotion);
+		localStorage.setItem('shake', value ? 'true' : 'false');
+	}
+	shakeCheckbox.addEventListener('change', () => setRollOnShakeOption(shakeCheckbox.checked));
+	setRollOnShakeOption(localStorage.getItem('shake') === 'true');
 } else {
 	// Motion not supported; advise the user
 	shakeCheckbox.disabled = true;
